@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment      #name of deployment
+spec : 
+  replicas : 3
+  selector:                         #to match which container to run when
+    matchLabels:
+      app: second-app     #same template name mapped here from line 14
+      tier : backend
+  template:
+    metadata:
+      labels:
+        app: second-app          #template name
+        tier: backend
+    spec:
+      containers :
+        - name: second-node     #name of container
+          image : pursharth25/kubefirstapp:v2     #container to be created from this image
